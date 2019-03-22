@@ -22,3 +22,6 @@ Rcon Minecraft для ВКонтакте
 7. Сохраняем файл и выходим.
 ***
 by [MrZillaGold](https:/vk.com/egorlisss) - по всем вопросам
+
+[modern-rcon](https://github.com/levrik/node-modern-rcon) - подключение к Rcon
+[vk-io](https://github.com/negezor/vk-io) - соеденение с ВКонтакте
