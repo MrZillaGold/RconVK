@@ -7,6 +7,8 @@ const request = require('prequest');
 const Rcon = require('modern-rcon');
 const acc = require("./base/acc.json");
 
+const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = ПОРТ, 'RCON ПАРОЛЬ');
+
 vk.setOptions({
     token: 'ВАШ ТОКЕН', // Токен
     apiMode: 'parallel',
@@ -29,28 +31,7 @@ vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (message) => {
 }
 });
 
-
 updates.startPolling()
 .then(() => {
 	console.log(`Rcon started! by MrZillaGold`);
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const rcon = new Rcon('18.185.112.254', port = 19132, 'poupoupou2004');
