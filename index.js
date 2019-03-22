@@ -8,12 +8,12 @@ const Rcon = require('modern-rcon');
 const acc = require("./base/acc.json");
 
 vk.setOptions({
-    token: '8d72553616a5ce375153522a4c6641e9c7ef4fe4b17b347a0be177a87f5a316e74c79766afa78307e7fdd',
+    token: 'ВАШ ТОКЕН', // Токен
     apiMode: 'parallel',
-	pollingGroupId: 175914098
+	pollingGroupId: 175914098 // ID Группы
 });
 
-let users = [233731786, 247146574, 3, 4, 5];
+let users = [1, 2, 3, 4, 5]; // Доступ для пользователей, всем остальным запрещено.
 
 vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (message) => {
   if (users.includes(message.senderId)) {
@@ -32,7 +32,7 @@ vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (message) => {
 
 updates.startPolling()
 .then(() => {
-	console.log(`Rcon started!`);
+	console.log(`Rcon started! by MrZillaGold`);
 })
 
 
