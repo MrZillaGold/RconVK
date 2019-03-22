@@ -7,7 +7,7 @@ const request = require('prequest');
 const Rcon = require('modern-rcon');
 const acc = require("./base/acc.json");
 
-const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = ПОРТ, 'RCON ПАРОЛЬ');
+const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = ПОРТ, 'RCON ПАРОЛЬ'); // Данные от сервера
 
 vk.setOptions({
     token: 'ВАШ ТОКЕН', // Токен
