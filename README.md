@@ -23,5 +23,5 @@ Rcon Minecraft для ВКонтакте
 ***
 by [MrZillaGold](https:/vk.com/egorlisss) - по всем вопросам
 
-[modern-rcon](https://github.com/levrik/node-modern-rcon) - подключение к Rcon
-[vk-io](https://github.com/negezor/vk-io) - соеденение с ВКонтакте
+[modern-rcon](https://github.com/levrik/node-modern-rcon) - подключение к Rcon /
+ [vk-io](https://github.com/negezor/vk-io) - соеденение с ВКонтакте
