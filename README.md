@@ -25,7 +25,7 @@ Rcon Minecraft для ВКонтакте
 - Вместо 1 2 3 4 5 вы можете вставлять id пользователей ВКонтакте, кто сможет испольнять команды Rcon, для всех остальных доступ запрещен.
 6. Сохраняем файл и выходим.
 ***
-by [ MrZillaGold ](https:/vk.com/egorlisss) - по всем вопросам
+[by MrZillaGold](https:/vk.com/egorlisss) - по всем вопросам
 
 [modern-rcon](https://github.com/levrik/node-modern-rcon) - подключение к Rcon /
  [vk-io](https://github.com/negezor/vk-io) - соеденение с ВКонтакте
