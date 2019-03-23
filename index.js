@@ -12,7 +12,7 @@ const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = RCON ПОРТ
 vk.setOptions({
     token: 'ВАШ ТОКЕН', // Токен
     apiMode: 'parallel',
-	pollingGroupId: 175914098 // ID Группы
+    pollingGroupId: 175914098 // ID Группы
 });
 
 let users = [1, 2, 3, 4, 5]; // Доступ для пользователей, всем остальным запрещено.
