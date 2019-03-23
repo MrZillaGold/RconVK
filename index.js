@@ -21,9 +21,10 @@ vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (message) => {
   if (users.includes(message.senderId)) {
   await rcon.connect();
   const response = await rcon.send(`${message.$match[1]}`);
+  let res = response.replace(/§./g, '');
   return Promise.all([
-    message.send(`💡 Ответ от сервера:`),
-    message.send(response),
+    message.send('💡 Ответ от сервера:'),
+    message.send(res),
     rcon.disconnect()
   ]);
 } else {
