@@ -1,5 +1,5 @@
-# Rcon Minecraft для ВКонтакте
-Rcon Minecraft для ВКонтакте
+# Rcon для ВКонтакте
+Rcon для ВКонтакте
 
 ![Sample](sample/sample.gif)
 
