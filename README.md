@@ -1,5 +1,4 @@
 # Rcon для ВКонтакте
-Rcon для ВКонтакте
 
 ![Sample](sample/sample.gif)
 
