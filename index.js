@@ -1,6 +1,5 @@
 const {VK} = require('vk-io');
 const vk = new VK();
-const commands = [];
 const {updates, snippets} = vk;
 const Rcon = require('modern-rcon');
 
