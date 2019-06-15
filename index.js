@@ -1,6 +1,6 @@
 const {VK} = require('vk-io');
 const vk = new VK();
-const {updates, snippets} = vk;
+const {updates} = vk;
 const Rcon = require('modern-rcon');
 
 const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = RCON ПОРТ, 'RCON ПАРОЛЬ'); // Данные от сервера
