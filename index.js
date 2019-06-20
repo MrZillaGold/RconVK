@@ -6,7 +6,7 @@ const Rcon = require('modern-rcon');
 const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = RCON ПОРТ, 'RCON ПАРОЛЬ'); // Данные от сервера
 
 vk.setOptions({
-    token: 'ВАШ ТОКЕН', // Токен
+    token: 'ТОКЕН ОТ ГРУППЫ', // Токен
     apiMode: 'parallel',
     pollingGroupId: 175914098 // ID Группы
 });
