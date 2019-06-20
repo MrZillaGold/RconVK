@@ -13,6 +13,7 @@ vk.setOptions({
 
 let users = [1, 2, 3, 4, 5]; // Доступ для пользователей, всем остальным запрещено.
 
+// Вы можете изменить ↓ префикс команд
 vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (message) => {
     if (users.includes(message.senderId)) {
         await rcon.connect();
