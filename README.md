@@ -1,8 +1,10 @@
 # Rcon для ВКонтакте
 
-![Sample](https://psv4.userapi.com/c848224/u2000062961/docs/d8/e117ccf771f7/file.gif?extra=hthTuKoJZGWHyggjrVZZ3i_CNIqslBgKY5JX4wkWZCJh5pRVhv1VbXGTTP-gxtx5WPOZIBozeKDeIuKaLL4iQJ9SgDKv6loMrYmh1GWTx8BXYwajoyZwKay5y3PyfyczdlwIio6T4io5u_bUaknPNByI)
+![Sample](https://pp.userapi.com/c858324/v858324849/3f46/4zwj9iDpn5s.jpg)
 
 ***
+
+Бота можно использовать для всех серверов и игр с поддержкой Rcon!
 
 `npm i`
 
