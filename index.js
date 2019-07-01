@@ -14,21 +14,21 @@ vk.setOptions({
 let users = [1, 2, 3, 4, 5]; // Доступ для пользователей, всем остальным запрещено.
 
 // Вы можете изменить ↓ префикс команд
-vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (message) => {
-    if (users.includes(message.senderId)) {
+vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (context) => {
+    if (users.includes(context.senderId)) {
         await rcon.connect();
-        const response = await rcon.send(`${message.$match[1]}`);
+        const response = await rcon.send(`${context.$match[1]}`);
         let res = response.replace(/§./g, '');
         return Promise.all([
-            message.send(`💡 Ответ от сервера:\n\n${res == `` ? `Команда выполнена!` : res}`),
+            context.send(`💡 Ответ от сервера:\n\n${res !== `` ? res : `Команда выполнена!`}`),
             rcon.disconnect()
         ]);
     } else {
-        message.send('⚠ У вас нет прав!');
+        context.send('⚠ У вас нет прав!');
     }
 });
 
 updates.startPolling()
     .then(() => {
         console.log(`Rcon started! by MrZillaGold`);
-    })
+    });
