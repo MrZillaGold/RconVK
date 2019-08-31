@@ -1,5 +1,5 @@
 const token = "Токен от группы ВКонтакте";
-const id = 183055251; // Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
+const id = 175914098; // Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
 const ip = "127.0.0.1"; // IP-Адрес сервера.
 const rconPort = 25566; // Rcon порт.
 const password = "пароль"; // Rcon пароль.
