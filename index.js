@@ -1,34 +1,65 @@
+const token = "Токен от группы ВКонтакте";
+const id = 183055251; // Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
+const ip = "127.0.0.1"; // IP-Адрес сервера.
+const rconPort = 25566; // Rcon порт.
+const password = "пароль"; // Rcon пароль.
+const users = [233731786, 2, 3, 4, 5];
+// ID пользователей ВКонтакте (через запятую) кто сможет взаимодействовать с ботом, всем остальным запрещено.
+// Например: https://vk.com/id233731786, ID = 233731786
+
 const {VK} = require('vk-io');
 const vk = new VK();
 const {updates} = vk;
 const Rcon = require('modern-rcon');
 
-const rcon = new Rcon('АЙПИ АДРЕС СЕРВЕРА', port = RCON ПОРТ, 'RCON ПАРОЛЬ'); // Данные от сервера
+const rcon = new Rcon(ip, port = rconPort, password);
 
 vk.setOptions({
-    token: 'ТОКЕН ОТ ГРУППЫ', // Токен
+    token: token,
     apiMode: 'parallel',
-    pollingGroupId: 175914098 // ID Группы
+    pollingGroupId: id
 });
 
-let users = [1, 2, 3, 4, 5]; // Доступ для пользователей, всем остальным запрещено.
+vk.updates.use(async (context, next) => {
+    if (!context.senderId)
+        return;
 
-// Вы можете изменить ↓ префикс команд
-vk.updates.hear(/^(?:rcon)\s?([^]+)?/i, async (context) => {
+    if (context.senderId < 0)
+        return;
+
+    if (context.isGroup)
+        return;
+
+    if (context.is('message') && context.isOutbox)
+        return;
+
+    await next();
+});
+
+// Вы можете изменить ↓ префикс команд. По умолчанию /. Например: /help
+vk.updates.hear(/^(?:\/)?([^]+)?/i, async (context) => {
     if (users.includes(context.senderId)) {
-        await rcon.connect();
-        const response = await rcon.send(`${context.$match[1]}`);
-        let res = response.replace(/§./g, '');
-        return Promise.all([
-            context.send(`💡 Ответ от сервера:\n\n${res !== `` ? res : `Команда выполнена!`}`),
-            rcon.disconnect()
-        ]);
+        await context.send("⏰ Подключение к серверу...");
+        rcon.connect()
+            .then(() => {
+            rcon.send(`${context.$match[1]}`)
+                .then(res => {
+                    context.send(`💡 Ответ от сервера:\n\n${res === "" ? "Команда выполнена!" :  res.replace(/§./g, '').slice(0, 4000)}`);
+                    return rcon.disconnect();
+                })
+                .catch(err => {
+                    return context.send(`⚠ Ошибка: ${err}.`);
+                });
+        })
+            .catch(err => {
+                return context.send(`⚠ Ошибка при подключении к серверу: ${err}.\n\nВозможно сервер выключен.`);
+            });
     } else {
-        context.send('⚠ У вас нет прав!');
+        return context.send('⚠ У вас нет прав для использования команд Rcon!');
     }
 });
 
 updates.startPolling()
     .then(() => {
-        console.log(`Rcon started! by MrZillaGold`);
+        console.log("Успешно подключен к ВКонтакте.");
     });
