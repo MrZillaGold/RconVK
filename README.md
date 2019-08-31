@@ -1,6 +1,6 @@
 # Rcon для ВКонтакте
 
-![Sample](https://pp.userapi.com/c858324/v858324849/3f46/4zwj9iDpn5s.jpg)
+![Sample](https://sun9-2.userapi.com/c855136/v855136899/d95d4/kdaMzaVumkE.jpg)
 
 ***
 
