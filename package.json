@@ -1,7 +1,7 @@
 {
   "name": "rconvk",
   "version": "1.0.0",
-  "description": "Rcon for vk.com",
+  "description": "Удаленное управление сервером через RCON для VK.COM",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
     "url": "https://github.com/MrZillaGold/RconVK/issues"
   },
   "dependencies": {
-    "vk-io": "^4.0.0-rc.15",
+    "vk-io": "^4.0.0-rc.20",
     "modern-rcon": "^1.0.3"
   },
   "homepage": "https://github.com/MrZillaGold/RconVK#readme"
