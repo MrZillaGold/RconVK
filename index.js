@@ -37,7 +37,7 @@ vk.updates.use(async (context, next) => {
 });
 
 // Вы можете изменить ↓ префикс команд. По умолчанию /. Например: /help
-vk.updates.hear(/^(?:\/)?([^]+)?/i, async (context) => {
+vk.updates.hear(/^\/([^]+)?/g, async (context) => {
     if (users.includes(context.senderId)) {
         await context.send("⏰ Подключение к серверу...");
         rcon.connect()
