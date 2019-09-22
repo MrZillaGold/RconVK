@@ -1,7 +1,7 @@
 const token = "Токен от группы ВКонтакте";
 const id = 175914098; // Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
-const ip = "127.0.0.1"; // IP-Адрес сервера.
-const rconPort = 25566; // Rcon порт.
+const ip = "127.0.0.1"; // IP-Адрес сервера. Домены тоже работают.
+const rconPort = 19132; // Rcon порт.
 const password = "пароль"; // Rcon пароль.
 const users = [233731786, 2, 3, 4, 5];
 // ID пользователей ВКонтакте (через запятую) кто сможет взаимодействовать с ботом, всем остальным запрещено.
@@ -10,9 +10,14 @@ const users = [233731786, 2, 3, 4, 5];
 const {VK} = require('vk-io');
 const vk = new VK();
 const {updates} = vk;
-const Rcon = require('modern-rcon');
+const {Rcon} = require('rcon-ts');
 
-const rcon = new Rcon(ip, port = rconPort, password);
+const rcon = new Rcon({
+    host: ip,
+    port: rconPort,
+    password: password,
+    timeout: 5000
+});
 
 vk.setOptions({
     token: token,
