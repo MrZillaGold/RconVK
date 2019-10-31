@@ -1,4 +1,5 @@
 const token = "Токен группы ВКонтакте";
+const id = 1; // ID Группы вк. Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
 const ip = "127.0.0.1"; // IP-Адрес сервера. Домены тоже работают.
 const rconPort = 19132; // Rcon порт.
 const password = "пароль"; // Rcon пароль.
@@ -19,7 +20,9 @@ const rcon = new Rcon({
 });
 
 vk.setOptions({
-    token: token
+    token: token,
+	apiMode: 'parallel',
+	pollingGroupId: id
 });
 
 vk.updates.use((context, next) => {
