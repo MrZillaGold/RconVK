@@ -1,5 +1,4 @@
-const token = "Токен от группы ВКонтакте";
-const id = 175914098; // Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
+const token = "a437414ad13f399bf4c33f752bb5f8fda73ab4d27d670976e5bba48d373dac65800ff964d5bbf61c0b892";
 const ip = "127.0.0.1"; // IP-Адрес сервера. Домены тоже работают.
 const rconPort = 19132; // Rcon порт.
 const password = "пароль"; // Rcon пароль.
@@ -20,31 +19,25 @@ const rcon = new Rcon({
 });
 
 vk.setOptions({
-    token: token,
-    apiMode: 'parallel',
-    pollingGroupId: id
+    token: token
 });
 
-vk.updates.use(async (context, next) => {
-    if (!context.senderId)
-        return;
+vk.updates.use((context, next) => {
+    if (!context.senderId) return;
 
-    if (context.senderId < 0)
-        return;
+    if (context.senderId < 0) return;
 
-    if (context.isGroup)
-        return;
+    if (context.isGroup) return;
 
-    if (context.is('message') && context.isOutbox)
-        return;
+    if (context.is('message') && context.isOutbox) return;
 
-    await next();
+    return next();
 });
 
 // Вы можете изменить ↓ префикс команд. По умолчанию /. Например: /help
-vk.updates.hear(/^(?:\/)([^]+)?/i, async (context) => {
+vk.updates.hear(/^(?:\/)([^]+)?/i, (context) => {
     if (users.includes(context.senderId)) {
-        await context.send("⏰ Подключение к серверу...");
+        context.send("⏰ Подключение к серверу...");
         rcon.connect()
             .then(() => {
             rcon.send(`${context.$match[1]}`)
