@@ -21,8 +21,8 @@ const rcon = new Rcon({
 
 vk.setOptions({
     token: token,
-	apiMode: 'parallel',
-	pollingGroupId: id
+    apiMode: 'parallel',
+    pollingGroupId: id
 });
 
 vk.updates.use((context, next) => {
