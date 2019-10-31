@@ -1,4 +1,4 @@
-const token = "a437414ad13f399bf4c33f752bb5f8fda73ab4d27d670976e5bba48d373dac65800ff964d5bbf61c0b892";
+const token = "Токен группы ВКонтакте";
 const ip = "127.0.0.1"; // IP-Адрес сервера. Домены тоже работают.
 const rconPort = 19132; // Rcon порт.
 const password = "пароль"; // Rcon пароль.
