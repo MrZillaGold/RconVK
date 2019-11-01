@@ -16,7 +16,7 @@
     "url": "https://github.com/MrZillaGold/RconVK/issues"
   },
   "dependencies": {
-    "vk-io": "^4.0.0-rc.20",
+    "vk-io": "^4.0.0-rc.25",
     "rcon-ts": "^1.2.3"
   },
   "homepage": "https://github.com/MrZillaGold/RconVK#readme"
