@@ -1,5 +1,5 @@
 {
-  "name": "rconvk",
+  "name": "RconVK",
   "version": "1.0.0",
   "description": "Удаленное управление сервером через RCON для VK.COM",
   "main": "index.js",
@@ -16,7 +16,8 @@
     "url": "https://github.com/MrZillaGold/RconVK/issues"
   },
   "dependencies": {
-    "vk-io": "^4.0.0-rc.25",
+    "logplease": "^1.2.15",
+    "vk-io": "^4.0.0-rc.30",
     "rcon-ts": "^1.2.3"
   },
   "homepage": "https://github.com/MrZillaGold/RconVK#readme"
