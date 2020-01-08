@@ -1,66 +1,76 @@
-const token = "Токен группы ВКонтакте";
-const id = 1; // ID Группы вк. Например: https://vk.com/public175914098, ID = 175914098. (БУКВЕННЫЙ ID НЕ РАБОТАЕТ).
-const ip = "127.0.0.1"; // IP-Адрес сервера. Домены тоже работают.
-const rconPort = 19132; // Rcon порт.
-const password = "пароль"; // Rcon пароль.
-const users = [233731786, 2, 3, 4, 5];
-// ID пользователей ВКонтакте (через запятую) кто сможет взаимодействовать с ботом, всем остальным запрещено.
-// Например: https://vk.com/id233731786, ID = 233731786
+const config = require("./config");
+const servers = config.servers;
+
+const {Rcon} = require('rcon-ts');
+const logs = require('logplease');
 
 const {VK} = require('vk-io');
 const vk = new VK();
 const {updates} = vk;
-const {Rcon} = require('rcon-ts');
 
-const rcon = new Rcon({
-    host: ip,
-    port: rconPort,
-    password: password,
-    timeout: 5000
+const log = logs.create('',  {
+    showTimestamp: true,
+    useLocalTime: true,
+    filename: 'logs.txt',
+    appendFile: true,
 });
 
 vk.setOptions({
-    token: token,
-    apiMode: 'parallel',
-    pollingGroupId: id
+    token: config.token,
+    apiMode: 'parallel'
 });
 
 vk.updates.use((context, next) => {
     if (!context.senderId) return;
-
     if (context.senderId < 0) return;
-
     if (context.isGroup) return;
-
     if (context.is('message') && context.isOutbox) return;
 
     return next();
 });
 
-// Вы можете изменить ↓ префикс команд. По умолчанию /. Например: /help
-vk.updates.hear(/^(?:\/)([^]+)?/i, (context) => {
-    if (users.includes(context.senderId)) {
+servers.forEach(server => {
+    const prefix = server.commands.prefix;
+    vk.updates.hear(new RegExp(`^(?:${prefix})([^]+)?`, 'i'), (context) => {
+        const ip = server.rcon.ip;
+        const port = server.rcon.port;
+        const password = server.rcon.password;
+
+        const access = server.commands.access;
+        const whitelist = server.commands.whitelist;
+        const blacklist = server.commands.blacklist;
+
+        const rcon = new Rcon({
+            host: ip,
+            port: port,
+            password: password,
+            timeout: 5000
+        });
+
+        if (access.length > 0 && !access.includes(context.senderId)) return context.send("⚠ У вас нет прав для использования команд Rcon!");
+        if (blacklist.length > 0 && blacklist.includes(context.$match[1])) return context.send("⚠ Эта команда запрещена для использования!");
+        if (whitelist.length > 0 && !whitelist.includes(context.$match[1])) return context.send("⚠ Эта команда не находится в списке разрешенных!");
+
         context.send("⏰ Подключение к серверу...");
         rcon.connect()
             .then(() => {
-            rcon.send(`${context.$match[1]}`)
-                .then(res => {
-                    context.send(`💡 Ответ от сервера:\n\n${res === "" ? "Команда выполнена!" :  res.replace(/§./g, '').slice(0, 4000)}`);
-                    return rcon.disconnect();
-                })
-                .catch(err => {
-                    return context.send(`⚠ Ошибка: ${err}.`);
-                });
-        })
+                rcon.send(`${context.$match[1]}`)
+                    .then(res => {
+                        context.send(`💡 Ответ от сервера:\n\n${res === "" ? "Команда выполнена!" :  res.replace(/§./g, '').slice(0, 4000)}`);
+                        return rcon.disconnect();
+                    })
+                    .catch(err => {
+                        return context.send(`⚠ Ошибка: ${err}.`);
+                    });
+            })
             .catch(err => {
-                return context.send(`⚠ Ошибка при подключении к серверу: ${err}.\n\nВозможно сервер выключен.`);
+                return context.send(`⚠ Ошибка при подключении к серверу ${ip}: ${err}.\n\nВозможно сервер выключен.`);
             });
-    } else {
-        return context.send('⚠ У вас нет прав для использования команд Rcon!');
-    }
+        log.info(`Пользователь: @id${context.senderId} Команда: ${prefix}${context.$match[1]}`);
+    });
 });
 
 updates.startPolling()
     .then(() => {
-        console.log("Успешно подключен к ВКонтакте.");
+        console.log("[Бот] Подключен к ВКонтакте.");
     });
