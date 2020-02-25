@@ -1,23 +1,23 @@
 const config = require("./config");
 const servers = config.servers;
 
-const {Rcon} = require('rcon-ts');
-const logs = require('logplease');
+const { Rcon } = require("rcon-ts");
+const logs = require("logplease");
 
-const {VK} = require('vk-io');
+const { VK } = require("vk-io");
 const vk = new VK();
-const {updates} = vk;
+const { updates } = vk;
 
-const log = logs.create('',  {
+const log = logs.create("",  {
     showTimestamp: true,
     useLocalTime: true,
-    filename: 'logs.txt',
+    filename: "logs.txt",
     appendFile: true,
 });
 
 vk.setOptions({
     token: config.token,
-    apiMode: 'parallel'
+    apiMode: "parallel"
 });
 
 vk.updates.use((context, next) => {
@@ -31,7 +31,7 @@ vk.updates.use((context, next) => {
 
 servers.forEach(server => {
     const prefix = server.commands.prefix;
-    vk.updates.hear(new RegExp(`^(?:${prefix})([^]+)?`, 'i'), (context) => {
+    updates.hear(new RegExp(`^(?:${prefix})([^]+)?`, "i"), (context) => {
         const ip = server.rcon.ip;
         const port = server.rcon.port;
         const password = server.rcon.password;
@@ -42,8 +42,8 @@ servers.forEach(server => {
 
         const rcon = new Rcon({
             host: ip,
-            port: port,
-            password: password,
+            port,
+            password,
             timeout: 5000
         });
 
@@ -54,9 +54,9 @@ servers.forEach(server => {
         context.send("⏰ Подключение к серверу...");
         rcon.connect()
             .then(() => {
-                rcon.send(`${context.$match[1]}`)
+                rcon.send(context.$match[1])
                     .then(res => {
-                        context.send(`💡 Ответ от сервера:\n\n${res === "" ? "Команда выполнена!" :  res.replace(/§./g, '').slice(0, 4000)}`);
+                        context.send(`💡 Ответ от сервера:\n\n${res === "" ? "Команда выполнена!" :  res.replace(/§./g, "").slice(0, 4000)}`);
                         return rcon.disconnect();
                     })
                     .catch(err => {
