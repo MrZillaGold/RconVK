@@ -20,11 +20,11 @@ vk.setOptions({
     apiMode: "parallel"
 });
 
-vk.updates.use((context, next) => {
+updates.use((context, next) => {
     if (!context.senderId) return;
     if (context.senderId < 0) return;
     if (context.isGroup) return;
-    if (context.is('message') && context.isOutbox) return;
+    if (context.is("message") && context.isOutbox) return;
 
     return next();
 });
@@ -48,8 +48,8 @@ servers.forEach(server => {
         });
 
         if (access.length > 0 && !access.includes(context.senderId)) return context.send("⚠ У вас нет прав для использования команд Rcon!");
-        if (blacklist.length > 0 && blacklist.includes(context.$match[1])) return context.send("⚠ Эта команда запрещена для использования!");
-        if (whitelist.length > 0 && !whitelist.includes(context.$match[1])) return context.send("⚠ Эта команда не находится в списке разрешенных!");
+        if (blacklist.length > 0 && blacklist.find((command) => context.$match[1].match(new RegExp(`(^(?:${command}) ([^]+))|(^(?:${command})$)`, "i")))) return context.send("⚠ Эта команда запрещена для использования!");
+        if (whitelist.length > 0 && !whitelist.find((command) => context.$match[1].match(new RegExp(`(^(?:${command}) ([^]+))|(^(?:${command})$)`, "i")))) return context.send("⚠ Эта команда не находится в списке разрешенных!");
 
         context.send("⏰ Подключение к серверу...");
         rcon.connect()
