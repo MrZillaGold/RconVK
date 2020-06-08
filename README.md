@@ -1,11 +1,13 @@
 <p align="center"><b>RconVK</b></p>
-<p align="center">Удаленное управление сервером через RCON для VK.COM.</p>
+<p align="center">Удаленное управление сервером через <b>RCON</b> для <b>VK.COM</b></p>
 <p align="center">
   <a href="https://vk.com/id233731786">По всем вопросам</a>
 </p>
 
 <p align="center">
-  Перед началом работы настройте config.json!
+  Перед началом работы настройте <b>config.json</b>!
+  <br/>
+  Скрипт запускается командой <b>npm start</b>!
 </p>
 
 ```js
@@ -36,5 +38,5 @@
 ***
 
 <p align="center">
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Лицензия Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />RconVK доступно по <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">лицензии Creative Commons «Attribution-NonCommercial-ShareAlike» («Атрибуция —  Некоммерческое использование — На тех же условиях») 4.0 Всемирная</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Лицензия Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br/><b>RconVK</b> доступен по <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">лицензии Creative Commons «Attribution-NonCommercial-ShareAlike» («Атрибуция —  Некоммерческое использование — На тех же условиях») 4.0 Всемирная</a>.
 </p>
